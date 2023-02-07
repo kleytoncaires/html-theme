@@ -1,0 +1,63 @@
+// Floating Images
+
+img {
+    &.alignright {
+        float: right;
+        margin: 0 0 1em 1em;
+    }
+    &.alignleft {
+        float: left;
+        margin: 0 1em 1em 0;
+    }
+    &.aligncenter {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+.alignright {
+    float: right;
+}
+.alignleft {
+    float: left;
+}
+.aligncenter {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+// Forms
+
+input:-webkit-autofill {
+    -webkit-box-shadow: inset 0 0 0px 9999px white;
+}
+
+.form-control {
+    &:hover,
+    &:focus {
+        box-shadow: none;
+    }
+}
+
+// Links
+
+a[href^="tel"] {
+    color: inherit;
+    text-decoration: none;
+}
+
+a[x-apple-data-detectors] {
+    color: inherit !important;
+    text-decoration: none !important;
+    font-size: inherit !important;
+    font-family: inherit !important;
+    font-weight: inherit !important;
+    line-height: inherit !important;
+}
+
+button {
+    &:focus {
+        outline: none;
+    }
+}
