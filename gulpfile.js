@@ -1,3 +1,4 @@
+const themeName = 'theme-name';
 const gulp = require('gulp');
 const { parallel, series } = require('gulp');
 
@@ -6,7 +7,12 @@ const sass = require('gulp-sass')(require('sass'));
 const concat = require('gulp-concat');
 const autoprefixer = require('gulp-autoprefixer');
 const babel = require('gulp-babel');
+const wpPot = require('gulp-wp-pot');
 const sort = require('gulp-sort');
+const path = require('path');
+const fs = require('fs');
+const plumber = require('gulp-plumber');
+const notify = require('gulp-notify');
 
 // /*
 // TOP LEVEL FUNCTIONS
@@ -16,23 +22,72 @@ const sort = require('gulp-sort');
 //     gulp.watch = Watch files and folders for changes
 // */
 
-// JS task: concatenates and uglifies JS files to script.js
-function js(cb) {
-	gulp.src('./assets/js/*js', { sourcemaps: true })
+// Copy Task: copy scripts from node modules to assets/scripts
+function copyScripts(cb) {
+	const scriptsToCopy = [
+		'node_modules/jquery/dist/jquery.min.js',
+		'node_modules/bootstrap/dist/js/bootstrap.bundle.min.js',
+		'node_modules/jquery-mask-plugin/dist/jquery.mask.min.js',
+		'node_modules/@fancyapps/ui/dist/fancybox/fancybox.umd.js',
+		'node_modules/swiper/swiper-bundle.min.js',
+	];
+
+	gulp.src(scriptsToCopy)
 		.pipe(
-			babel({
-				presets: ['@babel/preset-env'],
+			plumber({
+				errorHandler: notify.onError(
+					'Copy Error: <%= error.message %>'
+				),
 			})
 		)
-		.pipe(concat('script.js'))
-		.pipe(uglify())
-		.pipe(gulp.dest('./', { sourcemaps: '.' }));
+		.pipe(gulp.dest('assets/js/vendor'))
+		.on('end', function () {
+			console.log('Scripts copied successfully!');
+		});
+
+	cb();
+}
+
+// JS task: concatenates and uglifies JS files to script.js
+function js(cb) {
+	const srcPath = 'assets/js';
+	const destPath = './';
+
+	const files = fs
+		.readdirSync(srcPath)
+		.filter((file) => path.extname(file) === '.js');
+
+	files.forEach((file) => {
+		gulp.src(path.join(srcPath, file), { sourcemaps: true })
+			.pipe(
+				plumber({
+					errorHandler: notify.onError(
+						'JS Error: <%= error.message %>'
+					),
+				})
+			) // Usando gulp-plumber
+			.pipe(
+				babel({
+					presets: ['@babel/preset-env'],
+				})
+			)
+			.pipe(concat(file))
+			.pipe(uglify())
+			.pipe(gulp.dest(destPath, { sourcemaps: '.' }));
+		// .pipe(notify({ message: 'JS processed successfully: ' + file }));
+	});
+
 	cb();
 }
 
 // SCSS task: compiles the style.scss file into style.css
 function css(cb) {
-	gulp.src('./assets/css/*.scss', { sourcemaps: true })
+	gulp.src('assets/css/*.scss', { sourcemaps: true })
+		.pipe(
+			plumber({
+				errorHandler: notify.onError('CSS Error: <%= error.message %>'),
+			})
+		) // Usando gulp-plumber
 		.pipe(sass({ outputStyle: 'compressed' }).on('error', sass.logError))
 		.pipe(
 			autoprefixer({
@@ -41,18 +96,8 @@ function css(cb) {
 			})
 		)
 		.pipe(gulp.dest('./', { sourcemaps: '.' }));
-	cb();
-}
+	// .pipe(notify({ message: 'CSS processed successfully' }));
 
-// Copy Task: copy scripts to vendor
-function copy(cb) {
-	gulp.src([
-		'./node_modules/jquery/dist/jquery.min.js',
-		'./node_modules/bootstrap/dist/js/bootstrap.bundle.js',
-		'./node_modules/jquery-mask-plugin/dist/jquery.mask.min.js',
-		'./node_modules/swiper/swiper-bundle.min.js',
-		'./node_modules/@fancyapps/ui/dist/fancybox.esm.js',
-	]).pipe(gulp.dest('./assets/js/vendor'));
 	cb();
 }
 
@@ -63,7 +108,7 @@ function watchFiles() {
 }
 
 // Default 'gulp' command with start local server and watch files for changes.
-exports.default = series(css, js, watchFiles);
+exports.default = series(css, js, copyScripts, watchFiles);
 
 // 'gulp build' will build all assets but not run on a local server.
-exports.build = parallel(css, js, copy);
+exports.build = parallel(css, js);
