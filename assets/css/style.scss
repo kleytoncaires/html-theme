@@ -13,7 +13,7 @@ Use it to make something cool, have fun, and share what you've learned with othe
 */
 
 /*!
-  * Bootstrap v5.2.3 (https://getbootstrap.com/)
+  * Bootstrap v5.3.1 (https://getbootstrap.com/)
   * Copyright 2011-2022 The Bootstrap Authors (https://github.com/twbs/bootstrap/graphs/contributors)
   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
   */
@@ -25,6 +25,7 @@ Use it to make something cool, have fun, and share what you've learned with othe
 // Configuration
 @import '../../node_modules/bootstrap/scss/functions';
 @import '../../node_modules/bootstrap/scss/variables';
+@import '../../node_modules/bootstrap/scss/variables-dark';
 @import 'custom';
 @import '../../node_modules/bootstrap/scss/maps';
 @import '../../node_modules/bootstrap/scss/mixins';
@@ -71,7 +72,7 @@ Use it to make something cool, have fun, and share what you've learned with othe
 // scss-docs-end import-stack
 
 /*!
-* Font Awesome Free 6.1.2 by @fontawesome - https://fontawesome.com
+* Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com
 * License - https://fontawesome.com/license (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
 */
 
@@ -82,7 +83,7 @@ Use it to make something cool, have fun, and share what you've learned with othe
 // @import "../../node_modules/@fortawesome/fontawesome-free/scss/brands.scss";
 
 // ==================================================
-// fancyBox v4.0.27
+// fancyBox 5.0.20
 //
 // Licensed GPLv3 for open source use
 // or fancyBox Commercial License for commercial use
@@ -91,10 +92,10 @@ Use it to make something cool, have fun, and share what you've learned with othe
 // Copyright 2019 fancyApps
 //
 // ==================================================
-// @import "../../node_modules/@fancyapps/ui/dist/fancybox";
+// @import '../../node_modules/@fancyapps/ui/dist/fancybox/fancybox';
 
 // ==================================================
-//  * Swiper 8.1.4
+//  * Swiper 10.1.0
 //  * Most modern mobile touch slider and framework with hardware accelerated transitions
 //  * https://swiperjs.com
 //  * Copyright 2014-2022 Vladimir Kharlampidi
