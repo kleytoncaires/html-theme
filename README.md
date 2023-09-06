@@ -25,10 +25,10 @@ Gulp workflow. Kick-start a build-workflow for your pages with Gulp.
 
 #### ⚡️ Quick Overview
 
-Run step `#1`, and `#2` quickly in one go — Run inside local WP install's theme folder E.g. `/wp.local/wp-content/themes/your-theme` directory.
+Run step `#1`, and `#2` quickly in one go
 
 ```sh
-# 1— Install dependencies in your WordPress theme.
+# 1— Install dependencies.
 npm i @fancyapps/ui @fortawesome/fontawesome-free bootstrap jquery jquery-mask-plugin popper.js swiper --save
 # 2— Start your npm build workflow.
 npm start
