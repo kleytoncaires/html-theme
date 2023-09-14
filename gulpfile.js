@@ -118,6 +118,27 @@ function watchFiles() {
     gulp.watch('assets/js/*.js', js)
 }
 
+const conn = ftp.create({
+    host: 'ftp.example.com',
+    user: 'seu-usuario',
+    password: 'sua-senha',
+    parallel: 10,
+    log: console.log,
+})
+
+function deploy() {
+    return gulp
+        .src(['**', '!node_modules/**'])
+        .pipe(
+            rename((path) => {
+                path.dirname = path.dirname.replace(/\\/g, '/')
+            })
+        )
+        .pipe(conn.dest('/caminho/para/o/diretorio/no/servidor/ftp'))
+}
+
 exports.default = series(parallel(css, js), copyScripts, serve, watchFiles)
 
 exports.build = parallel(css, js, optimizeImages, convertToWebP)
+
+exports.deploy = deploy
