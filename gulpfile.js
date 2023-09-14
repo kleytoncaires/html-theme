@@ -128,7 +128,14 @@ const conn = ftp.create({
 
 function deploy() {
     return gulp
-        .src(['**', '!node_modules/**'])
+        .src([
+            '**',
+            '!node_modules/**',
+            '!**/.env',
+            '!**/.git',
+            '!**/.gitignore',
+            '!**/README.md',
+        ])
         .pipe(
             rename((path) => {
                 path.dirname = path.dirname.replace(/\\/g, '/')
