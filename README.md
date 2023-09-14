@@ -16,6 +16,17 @@ Gulp workflow. Kick-start a build-workflow for your pages with Gulp.
 > -   _Minification/uglification_
 > -   _Separate vendor and custom JS files handling_
 
+🌁 **IMAGES**
+
+> -   _Minification/optimization of images_
+> -   _File types: `.png`, `.jpg`, `.jpeg`, `.gif`, `.svg`_
+> -   _Convert images to WEBP_
+
+💻 **DEV ENVIRONMENT**
+
+> -   _Live reload browser with BrowserSync_
+> -   _Hotloading styles with CSS Injection_
+
 👀 **WATCHING**
 
 > -   _For changes in files to recompile_
