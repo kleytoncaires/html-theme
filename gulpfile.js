@@ -119,9 +119,9 @@ function watchFiles() {
 }
 
 const conn = ftp.create({
-    host: 'ftp.example.com',
-    user: 'seu-usuario',
-    password: 'sua-senha',
+    host: process.env.FTP_HOST,
+    user: process.env.FTP_USER,
+    password: process.env.FTP_PASSWORD,
     parallel: 10,
     log: console.log,
 })
