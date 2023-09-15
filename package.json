@@ -9,6 +9,7 @@
         "start": "gulp",
         "build": "gulp build",
         "watch": "gulp",
+        "deploy": "gulp deploy",
         "clean": "rm -rf dist"
     },
     "devDependencies": {

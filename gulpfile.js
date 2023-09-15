@@ -141,7 +141,7 @@ function deploy() {
                 path.dirname = path.dirname.replace(/\\/g, '/')
             })
         )
-        .pipe(conn.dest('/caminho/para/o/diretorio/no/servidor/ftp'))
+        .pipe(conn.dest(process.env.FTP_PATH))
 }
 
 exports.default = series(parallel(css, js), copyScripts, serve, watchFiles)
