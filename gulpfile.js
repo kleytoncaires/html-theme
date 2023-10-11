@@ -11,6 +11,9 @@ const sass = require('gulp-sass')(require('sass'))
 const concat = require('gulp-concat')
 const autoprefixer = require('gulp-autoprefixer')
 const babel = require('gulp-babel')
+const ftp = require('vinyl-ftp')
+const rename = require('gulp-rename')
+const browserSync = require('browser-sync').create()
 
 const srcPath = 'assets/js'
 const destPath = './'
