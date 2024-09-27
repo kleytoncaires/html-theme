@@ -1,0 +1,40 @@
+{
+    "files.exclude": {
+        "**/.git": true, // this is a default value
+        "**/.DS_Store": true, // this is a default value
+        "**/node_modules": true, // this excludes all folders
+        // named "node_modules" from
+        // the explore tree
+        // alternative version
+        "node_modules": true // this excludes the folder
+        // only from the root of
+        // your workspace
+    },
+    "prettier.useEditorConfig": false,
+    "prettier.useTabs": false,
+    "prettier.configPath": ".prettierrc.json",
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true,
+    "editor.formatOnPaste": false,
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": "explicit",
+        "source.organizeImports": "explicit"
+    },
+    "editor.wordWrap": "on",
+    "editor.autoIndent": "brackets",
+    "[dotenv]": {
+        "editor.defaultFormatter": "foxundermoon.shell-format"
+    },
+    "[php]": {
+        "editor.defaultFormatter": "bmewburn.vscode-intelephense-client"
+    },
+    "[html]": {
+        "editor.defaultFormatter": "vscode.html-language-features"
+    },
+    "[scss]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[css]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    }
+}

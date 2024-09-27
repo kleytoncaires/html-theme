@@ -1,0 +1,17 @@
+.background-cover {
+    background-size: cover;
+    background-position: center;
+}
+.background-contain {
+    background-size: contain;
+    background-position: center;
+}
+.background-no-repeat {
+    background-repeat: no-repeat;
+}
+
+.remove-last-margin {
+    p:last-child {
+        margin-bottom: 0;
+    }
+}

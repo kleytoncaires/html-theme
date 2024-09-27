@@ -1,0 +1,42 @@
+@mixin generate-color-classes($color-variable, $color-name) {
+    .background-#{$color-name} {
+        background-color: $color-variable;
+    }
+    .color-#{$color-name} {
+        color: $color-variable;
+    }
+}
+
+// @include generate-color-classes($color-red, 'red');
+
+@mixin generate-font-classes() {
+    .font-100 {
+        font-weight: $font-100;
+    }
+    .font-200 {
+        font-weight: $font-200;
+    }
+    .font-300 {
+        font-weight: $font-300;
+    }
+    .font-400 {
+        font-weight: $font-400;
+    }
+    .font-500 {
+        font-weight: $font-500;
+    }
+    .font-600 {
+        font-weight: $font-600;
+    }
+    .font-700 {
+        font-weight: $font-700;
+    }
+    .font-800 {
+        font-weight: $font-800;
+    }
+    .font-900 {
+        font-weight: $font-900;
+    }
+}
+
+@include generate-font-classes();

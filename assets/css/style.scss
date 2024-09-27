@@ -1,0 +1,20 @@
+/*
+Theme Name: Caires Digital Theme
+Theme URI: https://github.com/kleytoncaires/wp-theme
+Author: Kleyton Caires
+Description: A WordPress theme built with Gulp.
+Version: 2023.12
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: wp-theme
+*/
+
+@import 'vendor';
+@import 'variables';
+@import 'fonts';
+@import 'reset';
+@import 'wordpress';
+@import 'mixins';
+@import 'global';
+@import 'header';
+@import 'footer';
