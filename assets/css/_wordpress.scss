@@ -1,12 +1,12 @@
-// body.admin-bar {
-//     margin-top: 32px;
-// }
+body.admin-bar {
+    margin-top: 32px;
+}
 
-// @media screen and (max-width: 782px) {
-//     body.admin-bar {
-//         margin-top: 46px;
-//     }
-// }
+@media screen and (max-width: 782px) {
+    body.admin-bar {
+        margin-top: 46px;
+    }
+}
 
 img {
     &.alignright {
@@ -33,4 +33,53 @@ img {
     display: block;
     margin-left: auto;
     margin-right: auto;
+}
+
+.wpcf7 {
+    .form-label {
+        display: block;
+        font-size: 16px;
+        font-weight: normal;
+        line-height: 42px;
+        padding: 0 17px;
+        position: absolute;
+        transform: translateY(-100%);
+        transition: all 0.2s ease;
+        top: 45px;
+        visibility: hidden;
+        z-index: 1;
+    }
+
+    .wpcf7-form-control-wrap {
+        display: block;
+        height: 100%;
+        width: 100%;
+    }
+
+    input[type='text'].form-control,
+    input[type='email'].form-control,
+    input[type='tel'].form-control,
+    textarea.form-control,
+    .form-select {
+        background: transparent;
+        border: 1px solid #ccc;
+        display: block;
+        padding: 15px 16px 0;
+        font-size: 16px;
+        position: relative;
+        width: 100%;
+        z-index: 2;
+    }
+
+    .form-select {
+        padding-left: 12px;
+    }
+
+    .form-group.active > .form-label,
+    .form-group[disabled] > .form-label {
+        transform: translateY(-140%);
+        font-size: 12px;
+        padding: 0 16px;
+        visibility: visible;
+    }
 }

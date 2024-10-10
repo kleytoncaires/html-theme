@@ -40,7 +40,8 @@ Run step `#1`, and `#2` quickly in one go
 
 ```sh
 # 1— Install dependencies.
-npm i @fancyapps/ui @fortawesome/fontawesome-free bootstrap jquery jquery-mask-plugin popper.js swiper --save
+npm i @fancyapps/ui @fortawesome/fontawesome-free bootstrap jquery jquery-mask-plugin popper.js swiper aos jquery-validation --save
+
 # 2— Start your npm build workflow.
 npm start
 ```

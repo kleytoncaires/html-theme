@@ -1,42 +1,140 @@
+@use 'sass:math';
+
+// Mixin to generate background and text color classes based on a color variable and name.
+// Takes two parameters: $color-variable (the color value) and $color-name (the name to be used in the class).
 @mixin generate-color-classes($color-variable, $color-name) {
     .background-#{$color-name} {
-        background-color: $color-variable;
+        background-color: $color-variable; // Sets the background color to the specified variable.
     }
     .color-#{$color-name} {
-        color: $color-variable;
+        color: $color-variable; // Sets the text color to the specified variable.
     }
 }
 
+// Example usage of the generate-color-classes mixin.
 // @include generate-color-classes($color-red, 'red');
 
+// Mixin to generate font-weight classes for different font weights.
+// Each class corresponds to a specific font weight variable defined elsewhere in the code.
 @mixin generate-font-classes() {
     .font-100 {
-        font-weight: $font-100;
+        font-weight: $font-100; // Class for font weight 100.
     }
     .font-200 {
-        font-weight: $font-200;
+        font-weight: $font-200; // Class for font weight 200.
     }
     .font-300 {
-        font-weight: $font-300;
+        font-weight: $font-300; // Class for font weight 300.
     }
     .font-400 {
-        font-weight: $font-400;
+        font-weight: $font-400; // Class for font weight 400.
     }
     .font-500 {
-        font-weight: $font-500;
+        font-weight: $font-500; // Class for font weight 500.
     }
     .font-600 {
-        font-weight: $font-600;
+        font-weight: $font-600; // Class for font weight 600.
     }
     .font-700 {
-        font-weight: $font-700;
+        font-weight: $font-700; // Class for font weight 700.
     }
     .font-800 {
-        font-weight: $font-800;
+        font-weight: $font-800; // Class for font weight 800.
     }
     .font-900 {
-        font-weight: $font-900;
+        font-weight: $font-900; // Class for font weight 900.
     }
 }
 
-@include generate-font-classes();
+// Mixin to create a responsive aspect ratio for elements.
+// Takes one parameter: $ratio (the desired aspect ratio, e.g., 16/9).
+
+@mixin aspect-ratio($ratio) {
+    position: relative; // Sets position relative for the parent element.
+    width: 100%; // Sets the width to 100% of the parent container.
+    height: 0; // Sets height to 0 to create a "padding-top" trick.
+    padding-top: calc(100% / #{$ratio}); // Uses calc to calculate padding-top.
+
+    > * {
+        position: absolute; // Sets child elements to absolute positioning.
+        top: 0; // Aligns child elements to the top of the parent.
+        left: 0; // Aligns child elements to the left of the parent.
+        width: 100%; // Ensures child elements take up the full width.
+        height: 100%; // Ensures child elements take up the full height.
+    }
+}
+
+.ratio-16x9 {
+    @include aspect-ratio(math.div(16, 9)); // 16:9 aspect ratio.
+}
+
+.ratio-1x1 {
+    @include aspect-ratio(math.div(1, 1)); // 1:1 aspect ratio.
+}
+
+.ratio-4x3 {
+    @include aspect-ratio(math.div(4, 3)); // 4:3 aspect ratio.
+}
+
+.ratio-21x9 {
+    @include aspect-ratio(math.div(21, 9)); // 21:9 aspect ratio.
+}
+
+// Placeholders
+
+@mixin input-placeholder {
+    &.placeholder {
+        @content;
+    }
+    &:-moz-placeholder {
+        @content;
+    }
+    &::-moz-placeholder {
+        @content;
+    }
+    &:-ms-input-placeholder {
+        @content;
+    }
+    &::-webkit-input-placeholder {
+        @content;
+    }
+}
+
+// Vertical Centering
+@mixin vertical-center {
+    position: relative;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+// Rem units
+@mixin font-size($size, $base: 16) {
+    font-size: $size; // fallback for old browsers
+    font-size: ($size / $base) * 1rem;
+}
+
+// Background Gradient
+@mixin gradient($start-color, $end-color, $orientation) {
+    background: $start-color;
+    @if $orientation == 'vertical' {
+        background: -webkit-linear-gradient(top, $start-color, $end-color);
+        background: linear-gradient(to bottom, $start-color, $end-color);
+    } @else if $orientation == 'horizontal' {
+        background: -webkit-linear-gradient(left, $start-color, $end-color);
+        background: linear-gradient(to right, $start-color, $end-color);
+    } @else {
+        background: -webkit-radial-gradient(
+            center,
+            ellipse cover,
+            $start-color,
+            $end-color
+        );
+        background: radial-gradient(
+            ellipse at center,
+            $start-color,
+            $end-color
+        );
+    }
+}

@@ -4,11 +4,16 @@ input:-webkit-autofill {
     -webkit-box-shadow: inset 0 0 0px 9999px white;
 }
 
-.form-control {
-    &:hover,
-    &:focus {
-        box-shadow: none;
-    }
+.form-control:focus {
+    outline: none;
+}
+
+textarea.form-control {
+    resize: none;
+}
+
+.form-select {
+    width: 100%;
 }
 
 // Links
